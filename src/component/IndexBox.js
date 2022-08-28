@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 const IndexBox = () => {
@@ -6,6 +6,8 @@ const IndexBox = () => {
     name: "",
     nickname: "",
   });
+
+  const nameInput = useRef();
 
   const { name, nickname } = inputValue;
 
@@ -22,6 +24,7 @@ const IndexBox = () => {
       name: "",
       nickname: "",
     });
+    nameInput.current.focus();
   };
 
   return (
@@ -32,6 +35,7 @@ const IndexBox = () => {
         placeholder="이름"
         onChange={onChange}
         value={name}
+        ref={nameInput}
       />
       <input
         type="text"
