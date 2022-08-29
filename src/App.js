@@ -26,16 +26,19 @@ function App() {
       id: 1,
       name: "가나다",
       email: "gggg123@gmail.com",
+      active: true,
     },
     {
       id: 2,
       name: "라마",
       email: "aaaa123@gmail.com",
+      active: false,
     },
     {
       id: 3,
       name: "바하",
       email: "vvv123@gmail.com",
+      active: false,
     },
   ]);
 
@@ -77,6 +80,15 @@ function App() {
     setUsers(users.filter((user) => user.id !== id));
   };
 
+  //id 값을 비교해서 id 가 다르다면 그대로 두고,
+  // 같다면 active 값을 반전시키도록 구현을 하시면 됩니다.
+  const onToggle = (id) => {
+    setUsers(
+      users.map((user) =>
+        user.id === id ? { ...user, active: !user.active } : user
+      )
+    );
+  };
   return (
     <Outer>
       <GlobalStyle />
@@ -86,7 +98,7 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} onRemove={onRemove} />
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
     </Outer>
   );
 }
